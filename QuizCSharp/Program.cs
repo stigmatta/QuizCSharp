@@ -12,6 +12,8 @@ LoginOrRegistration:
 string login=null, password = null;
 DateOnly dateOnly;
 User currentUser = null;
+ConsoleKey key;
+
 int choice = Menu.LoginOrRegistration();
 
 
@@ -44,7 +46,6 @@ switch (choice)
         if (userDB.CheckForUserInDB(login))
         {
             Console.WriteLine("Такой логин уже существует");
-            ConsoleKey key;
             do
             {
                  key = Menu.TryAgain();
@@ -130,8 +131,8 @@ switch (menuChoice)
         currentUser.ShowPrevResults();
         do
         {
-            Console.WriteLine("Нажмите ENTER, чтобы вернуться");
-        } while (Console.ReadKey(true).Key != ConsoleKey.Enter);
+            key = Menu.TryAgain();
+        } while (key != ConsoleKey.Enter);
         goto MainMenu;
     case 3:
         int quizTopChoice = Menu.QuizMenuChoice();
@@ -157,8 +158,8 @@ switch (menuChoice)
             userDB.TopInCategory(category);
         do
         {
-            Console.WriteLine("Нажмите ENTER, чтобы вернуться");
-        } while (Console.ReadKey(true).Key != ConsoleKey.Enter);
+            key = Menu.TryAgain();
+        } while (key != ConsoleKey.Enter);
         goto MainMenu;
     case 4:
         int settingsChoice = Menu.SettingsMenuChoice();
